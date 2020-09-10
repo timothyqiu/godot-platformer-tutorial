@@ -34,4 +34,6 @@ func _process(delta):
 		animation_player.play("idle")
 	else:
 		animation_player.play("walk")
+	
+	if direction != 0:
 		sprite.flip_h = direction < 0
