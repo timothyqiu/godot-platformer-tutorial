@@ -69,3 +69,11 @@ shape = SubResource( 1 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 3 )
 anims/walk = SubResource( 4 )
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="JumpRequestTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
