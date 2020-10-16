@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tiles.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://background/cloudLayer2.png" type="Texture" id=4]
 [ext_resource path="res://background/cloudLayer1.png" type="Texture" id=5]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -57,25 +58,29 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 } ]
 1/z_index = 0
 
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, -256 )
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "default"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
 [node name="World" type="Node2D"]
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 3 )
-format = 1
-tile_data = PoolIntArray( -65517, 0, 0, -65516, 0, 0, 65530, 0, 0, 22, 0, 0, 131066, 1, 0, 65552, 0, 0, 65553, 0, 0, 65558, 1, 0, 196602, 1, 0, 131094, 1, 0, 262138, 1, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196630, 1, 0, 327674, 1, 0, 327677, 0, 0, 327678, 0, 0, 262166, 1, 0, 393210, 1, 0, 327689, 0, 0, 327690, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 1, 0, 458746, 1, 0, 458747, 0, 0, 393234, 0, 0, 393235, 1, 0, 393236, 1, 0, 393237, 1, 0, 393238, 1, 0, 524282, 1, 0, 524283, 1, 0, 524284, 0, 0, 524285, 0, 0, 458757, 0, 0, 458758, 0, 0, 458769, 0, 0, 458770, 1, 0, 458771, 1, 0, 458772, 1, 0, 458773, 1, 0, 458774, 1, 0, 589818, 1, 0, 589819, 1, 0, 589820, 1, 0, 589821, 1, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 1, 0, 524294, 1, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 1, 0, 524306, 1, 0, 524307, 1, 0, 524308, 1, 0, 524309, 1, 0, 524310, 1, 0, 655354, 1, 0, 655355, 1, 0, 655356, 1, 0, 655357, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -64, 512 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( 0, -32 )
-current = true
-limit_bottom = 640
-limit_smoothed = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-editor_draw_drag_margin = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -106,23 +111,55 @@ motion_mirroring = Vector2( 1024, 0 )
 position = Vector2( 512, 448 )
 texture = ExtResource( 3 )
 
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( -65517, 0, 0, -65516, 0, 0, 65530, 0, 0, 22, 0, 0, 131066, 1, 0, 65552, 0, 0, 65553, 0, 0, 65558, 1, 0, 196602, 1, 0, 131094, 1, 0, 262138, 1, 0, 196630, 1, 0, 327674, 1, 0, 327677, 0, 0, 327678, 0, 0, 262166, 1, 0, 393210, 1, 0, 327689, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 1, 0, 458746, 1, 0, 458747, 0, 0, 393234, 0, 0, 393235, 1, 0, 393236, 1, 0, 393237, 1, 0, 393238, 1, 0, 524282, 1, 0, 524283, 1, 0, 524284, 0, 0, 524285, 0, 0, 458757, 0, 0, 458758, 0, 0, 458769, 0, 0, 458770, 1, 0, 458771, 1, 0, 458772, 1, 0, 458773, 1, 0, 458774, 1, 0, 589818, 1, 0, 589819, 1, 0, 589820, 1, 0, 589821, 1, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 1, 0, 524294, 1, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 1, 0, 524306, 1, 0, 524307, 1, 0, 524308, 1, 0, 524309, 1, 0, 524310, 1, 0, 655354, 1, 0, 655355, 1, 0, 655356, 1, 0, 655357, 1, 0, 655358, 1, 0, 655359, 1, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589844, 1, 0, 589845, 1, 0, 589846, 1, 0 )
+
+[node name="MovingPlatform" parent="TileMap" instance=ExtResource( 7 )]
+position = Vector2( 64, 480 )
+
+[node name="MovingPlatform2" parent="TileMap" instance=ExtResource( 7 )]
+position = Vector2( 736, 352 )
+
+[node name="Path2D" parent="TileMap/MovingPlatform2" index="1"]
+curve = SubResource( 4 )
+
+[node name="AnimationPlayer" parent="TileMap/MovingPlatform2" index="2"]
+anims/default = SubResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -64, 512 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 0, -32 )
+current = true
+limit_bottom = 640
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+editor_draw_drag_margin = true
+
 [node name="Coin" parent="." instance=ExtResource( 6 )]
-position = Vector2( 32, 480 )
+position = Vector2( -160, 224 )
 
 [node name="Coin2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 96, 480 )
+position = Vector2( -96, 224 )
 
 [node name="Coin3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 160, 480 )
+position = Vector2( 288, 480 )
 
 [node name="Coin4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 384, 416 )
 
 [node name="Coin5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 640, 288 )
+position = Vector2( 608, 288 )
 
 [node name="Coin6" parent="." instance=ExtResource( 6 )]
-position = Vector2( 864, 160 )
+position = Vector2( 672, 32 )
 
 [node name="Coin7" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1088, 32 )
+
+[editable path="TileMap/MovingPlatform2"]

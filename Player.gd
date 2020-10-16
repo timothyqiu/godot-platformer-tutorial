@@ -17,7 +17,9 @@ onready var jump_request_timer = $JumpRequestTimer
 
 func _physics_process(delta):
 	var was_on_floor = is_on_floor()
-	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	var snap = Vector2.ZERO if is_jumping else Vector2.DOWN * 16
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	if is_on_floor():
 		is_jumping = false
 	elif was_on_floor and not is_jumping:
