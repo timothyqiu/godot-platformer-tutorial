@@ -189,6 +189,8 @@ tracks/6/keys = {
 }
 
 [node name="Coin" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
