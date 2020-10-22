@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cloudLayer2.png-269e9a96ea0ddcd45f7e4728a3cb51ba.stex"
+path="res://.import/0002.png-8d350828c9a9ee16ce9f69f6dfdb8685.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://background/cloudLayer2.png"
-dest_files=[ "res://.import/cloudLayer2.png-269e9a96ea0ddcd45f7e4728a3cb51ba.stex" ]
+source_file="res://assets/coins/0002.png"
+dest_files=[ "res://.import/0002.png-8d350828c9a9ee16ce9f69f6dfdb8685.stex" ]
 
 [params]
 

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/enemies.png" type="Texture" id=1]
+[ext_resource path="res://src/enemies/Enemy.gd" type="Script" id=2]
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -32 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+vframes = 15
+hframes = 4
+region_enabled = true
+region_rect = Rect2( 0, 0, 520, 1950 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

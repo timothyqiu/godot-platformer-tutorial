@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mountains.png-10077d4073e60eded6f9e8f11ecd9664.stex"
+path="res://.import/0005.png-d1c0e4d43e7e6f510cd84381e68e934f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://background/mountains.png"
-dest_files=[ "res://.import/mountains.png-10077d4073e60eded6f9e8f11ecd9664.stex" ]
+source_file="res://assets/coins/0005.png"
+dest_files=[ "res://.import/0005.png-d1c0e4d43e7e6f510cd84381e68e934f.stex" ]
 
 [params]
 

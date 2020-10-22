@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0004.png-acea74f8806d2f05fd3953f628042398.stex"
+path="res://.import/tiles.png-0d11a4bcdfb48056f67a66da241684a1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://coins/0004.png"
-dest_files=[ "res://.import/0004.png-acea74f8806d2f05fd3953f628042398.stex" ]
+source_file="res://assets/tiles.png"
+dest_files=[ "res://.import/tiles.png-0d11a4bcdfb48056f67a66da241684a1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

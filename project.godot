@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="New Game!"
-run/main_scene="res://World.tscn"
+run/main_scene="res://src/World.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -46,6 +46,7 @@ jump={
 
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
 
 [rendering]
 
