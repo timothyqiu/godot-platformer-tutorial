@@ -56,3 +56,11 @@ func _process(delta):
 	
 	if direction != 0:
 		sprite.flip_h = direction < 0
+
+
+func _on_Hurtbox_hurt():
+	get_tree().reload_current_scene()
+
+
+func _on_Hitbox_hit():
+	velocity.y = -jump_force / 2

@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
-
-
+[ext_resource path="res://src/boxes/Hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/boxes/Hitbox.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 32 )
@@ -55,6 +55,12 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 24, 5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24, 27 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
@@ -80,3 +86,23 @@ one_shot = true
 [node name="JumpRequestTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Hitbox" parent="." instance=ExtResource( 4 )]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -5 )
+shape = SubResource( 5 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -37 )
+shape = SubResource( 6 )
+[connection signal="hit" from="Hitbox" to="." method="_on_Hitbox_hit"]
+[connection signal="hurt" from="Hurtbox" to="." method="_on_Hurtbox_hurt"]
+
+[editable path="Hitbox"]
+
+[editable path="Hurtbox"]

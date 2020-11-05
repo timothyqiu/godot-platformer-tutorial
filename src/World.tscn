@@ -178,5 +178,6 @@ position = Vector2( -96, 256 )
 [node name="EnemySpawner" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( -96, 160 )
 enemy_scene = ExtResource( 8 )
+interval = 3.0
 
 [editable path="TileMap/MovingPlatform2"]

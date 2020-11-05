@@ -6,6 +6,7 @@ const max_speed = 50
 const acceleration = max_speed / 0.2
 
 export(Direction) var direction = Direction.LEFT
+export var is_dead = false
 
 var velocity = Vector2.ZERO
 
@@ -20,7 +21,11 @@ func _physics_process(delta):
 
 
 func _process(delta):
-	velocity.x = move_toward(velocity.x, max_speed * direction, acceleration * delta)
+	if is_dead:
+		velocity.x = 0
+	else:
+		velocity.x = move_toward(velocity.x, max_speed * direction, acceleration * delta)
 	velocity.y += gravity * delta
 	
-	sprite.flip_h = velocity.x > 0
+	if velocity.x != 0:
+		sprite.flip_h = velocity.x > 0
