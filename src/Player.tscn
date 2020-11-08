@@ -100,8 +100,13 @@ collision_layer = 8
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -37 )
 shape = SubResource( 6 )
+
+[node name="TrailTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
 [connection signal="hit" from="Hitbox" to="." method="_on_Hitbox_hit"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_Hurtbox_hurt"]
+[connection signal="timeout" from="TrailTimer" to="." method="_on_TrailTimer_timeout"]
 
 [editable path="Hitbox"]
 

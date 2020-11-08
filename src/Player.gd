@@ -64,3 +64,23 @@ func _on_Hurtbox_hurt():
 
 func _on_Hitbox_hit():
 	velocity.y = -jump_force / 2
+
+
+func _on_TrailTimer_timeout():
+	if velocity.x == 0:
+		return
+	
+	var trail = preload("res://src/effects/Trail.tscn").instance()
+	get_parent().add_child(trail)
+	get_parent().move_child(trail, get_index())
+	
+	var properties = [
+		"hframes",
+		"vframes",
+		"frame",
+		"texture",
+		"global_position",
+		"flip_h",
+	]
+	for name in properties:
+		trail.set(name, sprite.get(name))
