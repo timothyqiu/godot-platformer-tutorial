@@ -1,32 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/enemies/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/enemies/Slime.gd" type="Script" id=2]
+[ext_resource path="res://src/enemies/Fly.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 6 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 11.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
 resource_name = "death"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 52 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -34,20 +22,32 @@ tracks/1/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 34 ]
+}
 tracks/2/type = "value"
-tracks/2/path = NodePath("Hitbox:monitoring")
+tracks/2/path = NodePath("Sprite:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Hurtbox:monitorable")
+tracks/3/path = NodePath(".:is_dead")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -56,10 +56,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath(".:is_dead")
+tracks/4/path = NodePath("CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -71,19 +71,32 @@ tracks/4/keys = {
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite:visible")
+tracks/5/path = NodePath("Hitbox:monitoring")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false, true, false, true, false, true ]
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Hurtbox:monitorable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
+resource_name = "fly"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -96,7 +109,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 48, 1 ]
+"values": [ 38, 42 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Hurtbox:monitorable")
@@ -123,7 +136,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:is_dead")
+tracks/3/path = NodePath("CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -135,7 +148,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:visible")
+tracks/4/path = NodePath("Sprite:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -143,40 +156,64 @@ tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:is_dead")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 11.0
-height = 26.0001
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 12.0
+height = 12.0
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 24, 2 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 18, 3 )
 
-[node name="Slime" instance=ExtResource( 1 )]
+[sub_resource type="CircleShape2D" id=6]
+radius = 234.034
+
+[node name="Fly" instance=ExtResource( 1 )]
+collision_mask = 4
 script = ExtResource( 2 )
+max_speed = 400
+acceleration = 800.0
 
 [node name="Sprite" parent="." index="0"]
-frame = 48
+position = Vector2( 0, -5 )
+frame = 38
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 0, -6 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="." index="2"]
-autoplay = "walk"
-anims/death = SubResource( 2 )
-anims/walk = SubResource( 3 )
+autoplay = "fly"
+anims/death = SubResource( 5 )
+anims/fly = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( 0, -11 )
 rotation = -1.57079
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 0, -25 )
-shape = SubResource( 5 )
+position = Vector2( 0, -15 )
+shape = SubResource( 4 )
+
+[node name="PlayerSensor" type="Area2D" parent="." index="5"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSensor" index="0"]
+shape = SubResource( 6 )
 
 [editable path="Hitbox"]
 

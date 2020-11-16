@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tiles.png" type="Texture" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/MovingPlatform.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/enemies/Slime.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/EnemySpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/enemies/Fly.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -179,5 +180,17 @@ position = Vector2( -96, 256 )
 position = Vector2( -96, 160 )
 enemy_scene = ExtResource( 8 )
 interval = 3.0
+
+[node name="Fly" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 192, 288 )
+
+[node name="Fly2" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 289, 352 )
+
+[node name="Fly3" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 768, 203 )
+
+[node name="Fly4" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 1216, 203 )
 
 [editable path="TileMap/MovingPlatform2"]
