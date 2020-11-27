@@ -7,9 +7,7 @@
 [ext_resource path="res://assets/coins/0001.png" type="Texture" id=5]
 [ext_resource path="res://assets/coins/0003.png" type="Texture" id=6]
 [ext_resource path="res://src/Coin.gd" type="Script" id=7]
-[ext_resource path="res://assets/coin.wav" type="AudioStream" id=8]
-
-
+[ext_resource path="res://assets/audio/coin.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -208,4 +206,5 @@ anims/picked = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+bus = "SFX"
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

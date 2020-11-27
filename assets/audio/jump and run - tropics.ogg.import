@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/jump and run - tropics.ogg-437c64ba03864ad1f984d5894f9cfca3.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/jump and run - tropics.ogg"
+dest_files=[ "res://.import/jump and run - tropics.ogg-437c64ba03864ad1f984d5894f9cfca3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

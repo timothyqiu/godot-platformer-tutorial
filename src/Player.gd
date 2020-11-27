@@ -13,6 +13,7 @@ onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
 onready var coyote_timer = $CoyoteTimer
 onready var jump_request_timer = $JumpRequestTimer
+onready var jump_sound = $JumpSound
 
 
 func _physics_process(delta):
@@ -46,6 +47,7 @@ func _process(delta):
 		is_jumping = true
 		jump_request_timer.stop()
 		coyote_timer.stop()
+		jump_sound.play()
 	
 	if is_jumping:
 		animation_player.play("jump")

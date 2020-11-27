@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
 [ext_resource path="res://src/boxes/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/boxes/Hitbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/audio/jump.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 32 )
@@ -103,6 +104,10 @@ shape = SubResource( 6 )
 
 [node name="TrailTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "SFX"
 [connection signal="hit" from="Hitbox" to="." method="_on_Hitbox_hit"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_Hurtbox_hurt"]
 [connection signal="timeout" from="TrailTimer" to="." method="_on_TrailTimer_timeout"]

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/coin.wav-9c741b3c98ae5c0d9b2912fb194fc552.sample"
+path="res://.import/squish.wav-c4c038e38618f06e9f498cb09842a584.sample"
 
 [deps]
 
-source_file="res://assets/coin.wav"
-dest_files=[ "res://.import/coin.wav-9c741b3c98ae5c0d9b2912fb194fc552.sample" ]
+source_file="res://assets/audio/squish.wav"
+dest_files=[ "res://.import/squish.wav-c4c038e38618f06e9f498cb09842a584.sample" ]
 
 [params]
 

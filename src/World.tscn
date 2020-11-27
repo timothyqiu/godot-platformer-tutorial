@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/tiles.png" type="Texture" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/enemies/Slime.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/EnemySpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/enemies/Fly.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/World.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -84,6 +85,7 @@ tracks/0/keys = {
 }
 
 [node name="World" type="Node2D"]
+script = ExtResource( 11 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
