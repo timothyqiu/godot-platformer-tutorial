@@ -6,6 +6,8 @@ const acceleration = max_speed / 0.2
 const air_acceleration = max_speed / 0.05
 const jump_force = 800
 
+export var is_dead = false
+
 var velocity = Vector2.ZERO
 var is_jumping = false
 
@@ -28,6 +30,8 @@ func _physics_process(delta):
 
 
 func _input(event):
+	if is_dead:
+		return
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 	if event.is_action_released("jump") and velocity.y < -jump_force / 2:
@@ -35,11 +39,14 @@ func _input(event):
 
 
 func _process(delta):
+	velocity.y += gravity * delta
+	
+	if is_dead:
+		return
 	var direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	
 	var acc = acceleration if is_on_floor() else air_acceleration
 	velocity.x = move_toward(velocity.x, direction * max_speed, acc * delta)
-	velocity.y += gravity * delta
 	
 	var can_jump = is_on_floor() or coyote_timer.time_left > 0
 	if can_jump and jump_request_timer.time_left > 0:
@@ -61,7 +68,9 @@ func _process(delta):
 
 
 func _on_Hurtbox_hurt():
-	get_tree().reload_current_scene()
+	velocity.y = -jump_force
+	animation_player.play("death")
+	Globals.reload_world()
 
 
 func _on_Hitbox_hit():
