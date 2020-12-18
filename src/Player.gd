@@ -4,7 +4,7 @@ const gravity = 2000
 const max_speed = 350
 const acceleration = max_speed / 0.2
 const air_acceleration = max_speed / 0.05
-const jump_force = 800
+const jump_force = 880
 
 export var is_dead = false
 

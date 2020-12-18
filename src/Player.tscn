@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/audio/fall.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24, 32 )
+extents = Vector2( 24, 29 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "death"
@@ -196,7 +196,7 @@ vframes = 2
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -32 )
+position = Vector2( 0, -29 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

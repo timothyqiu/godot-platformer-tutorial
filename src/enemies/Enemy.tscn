@@ -31,4 +31,10 @@ collision_layer = 16
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 bus = "SFX"
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -3, -9 )
+scale = Vector2( 6.8, 5.5 )
+process_parent = true
+physics_process_parent = true
 [connection signal="hurt" from="Hurtbox" to="." method="_on_Hurtbox_hurt"]
