@@ -38,3 +38,4 @@ scale = Vector2( 6.8, 5.5 )
 process_parent = true
 physics_process_parent = true
 [connection signal="hurt" from="Hurtbox" to="." method="_on_Hurtbox_hurt"]
+[connection signal="viewport_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_viewport_entered"]

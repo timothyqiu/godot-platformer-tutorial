@@ -67,7 +67,7 @@ func _process(delta):
 		sprite.flip_h = direction < 0
 
 
-func _on_Hurtbox_hurt():
+func _on_Hurtbox_hurt(_hitbox):
 	velocity.y = -jump_force
 	animation_player.play("death")
 	Globals.reload_world()
