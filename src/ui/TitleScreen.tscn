@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/ui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/ui/title.png" type="Texture" id=2]
 [ext_resource path="res://src/DayBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ui/TitleScreen.gd" type="Script" id=4]
+[ext_resource path="res://assets/ui/click1.ogg" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "wiggle"
@@ -20,6 +21,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
 "values": [ -6.0, 6.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "show-options"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionsMenu:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenu:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
 }
 
 [node name="TitleScreen" type="Control"]
@@ -66,30 +95,89 @@ texture = ExtResource( 2 )
 autoplay = "wiggle"
 anims/wiggle = SubResource( 1 )
 
-[node name="MainMenu" type="VBoxContainer" parent="UI"]
-margin_left = 470.0
+[node name="Menus" type="Control" parent="UI"]
 margin_top = 302.0
-margin_right = 554.0
-margin_bottom = 488.0
-size_flags_horizontal = 4
-size_flags_vertical = 2
-theme = ExtResource( 1 )
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
 
-[node name="StartButton" type="Button" parent="UI/MainMenu"]
-margin_right = 84.0
+[node name="MainMenu" type="VBoxContainer" parent="UI/Menus"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_right = -10.0
+grow_horizontal = 0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="UI/Menus/MainMenu"]
+margin_left = 460.0
+margin_right = 544.0
 margin_bottom = 42.0
+size_flags_horizontal = 4
 text = "开始"
 
-[node name="OptionsButton" type="Button" parent="UI/MainMenu"]
+[node name="OptionsButton" type="Button" parent="UI/Menus/MainMenu"]
+margin_left = 460.0
 margin_top = 72.0
-margin_right = 84.0
+margin_right = 544.0
 margin_bottom = 114.0
+size_flags_horizontal = 4
 text = "选项"
 
-[node name="QuitButton" type="Button" parent="UI/MainMenu"]
+[node name="QuitButton" type="Button" parent="UI/Menus/MainMenu"]
+margin_left = 460.0
 margin_top = 144.0
-margin_right = 84.0
+margin_right = 544.0
 margin_bottom = 186.0
+size_flags_horizontal = 4
 text = "退出"
+
+[node name="OptionsMenu" type="VBoxContainer" parent="UI/Menus"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_right = -10.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGMButton" type="Button" parent="UI/Menus/OptionsMenu"]
+margin_right = 176.0
+margin_bottom = 42.0
+size_flags_horizontal = 4
+text = "音乐:开"
+
+[node name="SFXButton" type="Button" parent="UI/Menus/OptionsMenu"]
+margin_top = 72.0
+margin_right = 176.0
+margin_bottom = 114.0
+size_flags_horizontal = 4
+text = "音效:开"
+
+[node name="BackButton" type="Button" parent="UI/Menus/OptionsMenu"]
+margin_left = 46.0
+margin_top = 144.0
+margin_right = 130.0
+margin_bottom = 186.0
+size_flags_horizontal = 4
+text = "返回"
+
+[node name="Transitions" type="AnimationPlayer" parent="UI/Menus"]
+anims/show-options = SubResource( 2 )
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "SFX"
+[connection signal="pressed" from="UI/Menus/MainMenu/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="UI/Menus/MainMenu/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="UI/Menus/MainMenu/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="UI/Menus/OptionsMenu/BGMButton" to="." method="_on_BGMButton_pressed"]
+[connection signal="pressed" from="UI/Menus/OptionsMenu/SFXButton" to="." method="_on_SFXButton_pressed"]
+[connection signal="pressed" from="UI/Menus/OptionsMenu/BackButton" to="." method="_on_BackButton_pressed"]
 
 [editable path="DayBackground"]
