@@ -50,6 +50,7 @@ autoplay = true
 bus = "BGM"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 1 )

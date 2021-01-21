@@ -24,6 +24,8 @@ func _ready():
 		bounds.position.x + bounds.size.x / 2,
 		bounds.end.y + tilemap.cell_size.y * 2
 	)
+	
+	add_child(preload("res://src/ui/HUD.tscn").instance())
 
 
 func _input(event):
