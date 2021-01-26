@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/ui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/ui/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://src/ui/ClickSound.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.890196 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 470.0
+margin_top = 243.0
+margin_right = 554.0
+margin_bottom = 357.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 84.0
+margin_bottom = 42.0
+text = "继续"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 84.0
+margin_bottom = 114.0
+text = "退出"
+
+[node name="ClickSound" parent="." instance=ExtResource( 3 )]
+
+[node name="Transitions" type="AnimationPlayer" parent="."]
+anims/show = SubResource( 1 )
+[connection signal="visibility_changed" from="." to="." method="_on_PauseMenu_visibility_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

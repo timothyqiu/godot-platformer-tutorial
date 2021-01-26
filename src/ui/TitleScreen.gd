@@ -3,28 +3,17 @@ extends Control
 export var scroll_velocity = 10.0
 
 onready var background = $DayBackground
-onready var click_sound = $ClickSound
 onready var transitions = $UI/Menus/Transitions
 onready var bgm_button = $UI/Menus/OptionsMenu/BGMButton
 onready var sfx_button = $UI/Menus/OptionsMenu/SFXButton
 
 
 func _ready():
-	_hook_button_sound(self)
 	_update_buttons()
 
 
 func _process(delta):
 	background.scroll_offset.x += scroll_velocity * delta
-
-
-func _hook_button_sound(node):
-	for child in node.get_children():
-		if child is Button:
-			child.connect("pressed", click_sound, "play")
-		else:
-			_hook_button_sound(child)
-
 
 
 func _on_BackButton_pressed():

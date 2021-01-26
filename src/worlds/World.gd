@@ -26,8 +26,3 @@ func _ready():
 	)
 	
 	add_child(preload("res://src/ui/HUD.tscn").instance())
-
-
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		Globals.back_to_title()

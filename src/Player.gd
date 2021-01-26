@@ -29,7 +29,7 @@ func _physics_process(delta):
 		coyote_timer.start()
 
 
-func _input(event):
+func _unhandled_input(event):
 	if is_dead:
 		return
 	if event.is_action_pressed("jump"):

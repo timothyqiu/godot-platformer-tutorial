@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/ui/title.png" type="Texture" id=2]
 [ext_resource path="res://src/DayBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ui/TitleScreen.gd" type="Script" id=4]
-[ext_resource path="res://assets/ui/click1.ogg" type="AudioStream" id=5]
+[ext_resource path="res://src/ui/ClickSound.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "wiggle"
@@ -170,9 +170,7 @@ text = "返回"
 [node name="Transitions" type="AnimationPlayer" parent="UI/Menus"]
 anims/show-options = SubResource( 2 )
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-bus = "SFX"
+[node name="ClickSound" parent="." instance=ExtResource( 5 )]
 [connection signal="pressed" from="UI/Menus/MainMenu/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="UI/Menus/MainMenu/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="UI/Menus/MainMenu/QuitButton" to="." method="_on_QuitButton_pressed"]

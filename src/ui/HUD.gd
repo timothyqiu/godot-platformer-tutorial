@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 onready var coin_label = $HBoxContainer/CoinLabel
+onready var pause_menu = $PauseMenu
 
 
 func _ready():
@@ -10,3 +11,7 @@ func _ready():
 
 func _on_coins_changed():
 	coin_label.text = str(Globals.get_coins())
+
+
+func _on_PauseButton_pressed():
+	pause_menu.show_menu()

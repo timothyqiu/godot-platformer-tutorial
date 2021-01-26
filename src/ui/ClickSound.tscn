@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/ui/click1.ogg" type="AudioStream" id=1]
+[ext_resource path="res://src/ui/ClickSound.gd" type="Script" id=2]
+
+[node name="ClickSound" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+bus = "SFX"
+script = ExtResource( 2 )
