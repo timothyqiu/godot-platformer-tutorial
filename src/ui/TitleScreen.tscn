@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/ui/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/ui/title.png" type="Texture" id=2]
-[ext_resource path="res://src/DayBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UIBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ui/TitleScreen.gd" type="Script" id=4]
 [ext_resource path="res://src/ui/ClickSound.tscn" type="PackedScene" id=5]
 
@@ -58,21 +58,8 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-scroll_velocity = -30.0
 
-[node name="DayBackground" parent="." instance=ExtResource( 3 )]
-
-[node name="ParallaxLayer" parent="DayBackground" index="0"]
-motion_scale = Vector2( 0.2, 1 )
-motion_offset = Vector2( 51.2, 0 )
-
-[node name="ParallaxLayer2" parent="DayBackground" index="1"]
-motion_scale = Vector2( 0.4, 1 )
-motion_offset = Vector2( 38.4, 0 )
-
-[node name="ParallaxLayer3" parent="DayBackground" index="2"]
-motion_scale = Vector2( 0.6, 1 )
-motion_offset = Vector2( 25.6, 0 )
+[node name="UIBackground" parent="." instance=ExtResource( 3 )]
 
 [node name="UI" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -177,5 +164,3 @@ anims/show-options = SubResource( 2 )
 [connection signal="pressed" from="UI/Menus/OptionsMenu/BGMButton" to="." method="_on_BGMButton_pressed"]
 [connection signal="pressed" from="UI/Menus/OptionsMenu/SFXButton" to="." method="_on_SFXButton_pressed"]
 [connection signal="pressed" from="UI/Menus/OptionsMenu/BackButton" to="." method="_on_BackButton_pressed"]
-
-[editable path="DayBackground"]

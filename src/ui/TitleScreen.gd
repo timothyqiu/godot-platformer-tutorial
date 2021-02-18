@@ -1,8 +1,6 @@
 extends Control
 
-export var scroll_velocity = 10.0
 
-onready var background = $DayBackground
 onready var transitions = $UI/Menus/Transitions
 onready var bgm_button = $UI/Menus/OptionsMenu/BGMButton
 onready var sfx_button = $UI/Menus/OptionsMenu/SFXButton
@@ -10,10 +8,6 @@ onready var sfx_button = $UI/Menus/OptionsMenu/SFXButton
 
 func _ready():
 	_update_buttons()
-
-
-func _process(delta):
-	background.scroll_offset.x += scroll_velocity * delta
 
 
 func _on_BackButton_pressed():

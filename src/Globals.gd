@@ -10,6 +10,9 @@ var sfx_enabled setget set_sfx_enabled, is_sfx_enabled
 
 var coins_collected: int = 0
 var coins_pending: int = 0 setget _set_coins_pending
+var deaths: int = 0
+var started_at: int = OS.get_unix_time()
+var completed_at: int = OS.get_unix_time()
 
 onready var animation_player = $AnimationPlayer
 
@@ -30,11 +33,19 @@ func back_to_title():
 func start_game():
 	coins_collected = 0
 	coins_pending = 0
+	deaths = 0
+	started_at = OS.get_unix_time()
 	go_to_world("res://src/worlds/World01.tscn")
+
+
+func complete_game():
+	completed_at = OS.get_unix_time()
+	_animate_transition_to("res://src/ui/GameComplete.tscn")
 
 
 func reload_world():
 	coins_pending = 0
+	deaths += 1
 	_animate_transition_to(null)
 
 

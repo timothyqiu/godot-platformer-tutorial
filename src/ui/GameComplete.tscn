@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/ui/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/ui/fonts/stats_value_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/ui/fonts/stats_title_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/UIBackground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/ui/GameComplete.gd" type="Script" id=5]
+
+[node name="GameComplete" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UIBackground" parent="." instance=ExtResource( 4 )]
+
+[node name="UI" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="UI"]
+margin_left = 312.0
+margin_top = 95.0
+margin_right = 712.0
+margin_bottom = 189.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "游戏通关"
+
+[node name="Stats" type="GridContainer" parent="UI"]
+margin_left = 396.0
+margin_top = 315.0
+margin_right = 628.0
+margin_bottom = 501.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+columns = 2
+
+[node name="Time" type="Label" parent="UI/Stats"]
+margin_right = 84.0
+margin_bottom = 42.0
+text = "时间"
+
+[node name="TimeValue" type="Label" parent="UI/Stats"]
+margin_left = 132.0
+margin_right = 232.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 2 )
+text = "12:34"
+
+[node name="Deaths" type="Label" parent="UI/Stats"]
+margin_top = 72.0
+margin_right = 84.0
+margin_bottom = 114.0
+text = "死亡"
+
+[node name="DeathsValue" type="Label" parent="UI/Stats"]
+margin_left = 132.0
+margin_top = 72.0
+margin_right = 232.0
+margin_bottom = 114.0
+custom_fonts/font = ExtResource( 2 )
+text = "7"
+
+[node name="Coins" type="Label" parent="UI/Stats"]
+margin_top = 144.0
+margin_right = 84.0
+margin_bottom = 186.0
+text = "金币"
+
+[node name="CoinsValue" type="Label" parent="UI/Stats"]
+margin_left = 132.0
+margin_top = 144.0
+margin_right = 232.0
+margin_bottom = 186.0
+custom_fonts/font = ExtResource( 2 )
+text = "42"
