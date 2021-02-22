@@ -1,27 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/background/mountains.png" type="Texture" id=1]
 [ext_resource path="res://assets/background/cloudLayer1.png" type="Texture" id=2]
-[ext_resource path="res://assets/background/cloudLayer2.png" type="Texture" id=3]
 
-[node name="DayBackground" type="ParallaxBackground"]
+[node name="NightBackground" type="ParallaxBackground"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.811765, 0.937255, 0.988235, 1 )
+color = Color( 0.0196078, 0.0196078, 0.0313726, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0.2, 0.2 )
-motion_offset = Vector2( 51.2, -272 )
-motion_mirroring = Vector2( 1024, 0 )
-
-[node name="cloudLayer2" type="Sprite" parent="ParallaxLayer"]
-position = Vector2( 512, 272 )
-texture = ExtResource( 3 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.4, 0.4 )
@@ -29,6 +19,7 @@ motion_offset = Vector2( 38.4, -204 )
 motion_mirroring = Vector2( 1024, 0 )
 
 [node name="cloudLayer1" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.0823529, 0.0862745, 0.105882, 1 )
 position = Vector2( 512, 384 )
 texture = ExtResource( 2 )
 
@@ -38,5 +29,6 @@ motion_offset = Vector2( 25.6, -136 )
 motion_mirroring = Vector2( 1024, 0 )
 
 [node name="mountains" type="Sprite" parent="ParallaxLayer3"]
+modulate = Color( 0.152941, 0.156863, 0.188235, 1 )
 position = Vector2( 512, 448 )
 texture = ExtResource( 1 )
