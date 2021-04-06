@@ -4,6 +4,7 @@ signal coins_changed
 
 const BGM_IDX = 1
 const SFX_IDX = 2
+const CONFIG_PATH = "user://settings.cfg"
 
 var bgm_enabled setget set_bgm_enabled, is_bgm_enabled
 var sfx_enabled setget set_sfx_enabled, is_sfx_enabled
@@ -15,6 +16,10 @@ var started_at: int = OS.get_unix_time()
 var completed_at: int = OS.get_unix_time()
 
 onready var animation_player = $AnimationPlayer
+
+
+func _ready():
+	load_config()
 
 
 func get_coins():
@@ -81,3 +86,26 @@ func is_sfx_enabled():
 
 func set_sfx_enabled(value):
 	AudioServer.set_bus_mute(SFX_IDX, not value)
+
+
+func save_config():
+	var file = ConfigFile.new()
+	file.set_value("audio", "bgm_enabled", is_bgm_enabled())
+	file.set_value("audio", "sfx_enabled", is_sfx_enabled())
+	var err = file.save(CONFIG_PATH)
+	if err != OK:
+		push_error("Failed to save config: %d" % err)
+
+
+func load_config():
+	var file = ConfigFile.new()
+	var err = file.load(CONFIG_PATH)
+	if err == OK:
+		set_bgm_enabled(file.get_value("audio", "bgm_enabled", true))
+		set_sfx_enabled(file.get_value("audio", "sfx_enabled", true))
+	else:
+		push_warning("Failed to load config: %d" % err)
+		set_bgm_enabled(true)
+		set_sfx_enabled(true)
+
+

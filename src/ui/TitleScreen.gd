@@ -20,11 +20,13 @@ func _on_OptionsButton_pressed():
 
 func _on_BGMButton_pressed():
 	Globals.bgm_enabled = not Globals.bgm_enabled
+	Globals.save_config()
 	_update_buttons()
 
 
 func _on_SFXButton_pressed():
 	Globals.sfx_enabled = not Globals.sfx_enabled
+	Globals.save_config()
 	_update_buttons()
 
 
