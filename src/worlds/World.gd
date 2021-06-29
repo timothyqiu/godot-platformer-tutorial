@@ -1,8 +1,9 @@
 extends Node2D
 
+onready var tilemap = $TileMap
+
 
 func _ready():
-	var tilemap = $TileMap
 	var rect = tilemap.get_used_rect()
 	
 	var bounds = Rect2(
@@ -26,3 +27,22 @@ func _ready():
 	)
 	
 	add_child(preload("res://src/ui/HUD.tscn").instance())
+	
+	instance_tiles("coin", preload("res://src/Coin.tscn"))
+
+
+func instance_tiles(tile_name, scene):
+	var id = tilemap.tile_set.find_tile_by_name(tile_name)
+	assert(id != -1)
+	
+	for pos in tilemap.get_used_cells_by_id(id):
+		var node = scene.instance()
+		tilemap.add_child(node)
+		node.position = tilemap.map_to_world(pos) + tilemap.cell_size / 2
+		tilemap.set_cellv(pos, -1)
+
+
+
+
+
+
