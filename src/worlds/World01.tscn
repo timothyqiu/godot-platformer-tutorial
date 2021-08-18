@@ -11,12 +11,12 @@
 [ext_resource path="res://src/objects/Exit.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/boxes/Hitbox.tscn" type="PackedScene" id=13]
 
-[sub_resource type="Curve2D" id=4]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, -256 )
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "default"
 length = 4.0
 loop = true
@@ -50,10 +50,10 @@ position = Vector2( 64, 480 )
 position = Vector2( 736, 352 )
 
 [node name="Path2D" parent="TileMap/MovingPlatform2" index="1"]
-curve = SubResource( 4 )
+curve = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="TileMap/MovingPlatform2" index="2"]
-anims/default = SubResource( 5 )
+anims/default = SubResource( 2 )
 
 [node name="Exit" parent="TileMap" instance=ExtResource( 12 )]
 position = Vector2( 1856, 0 )

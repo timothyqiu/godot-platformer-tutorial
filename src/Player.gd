@@ -16,6 +16,7 @@ onready var sprite = $Sprite
 onready var coyote_timer = $CoyoteTimer
 onready var jump_request_timer = $JumpRequestTimer
 onready var jump_sound = $JumpSound
+onready var tween = $Tween
 
 
 func _physics_process(delta):
@@ -25,6 +26,8 @@ func _physics_process(delta):
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	if is_on_floor():
 		is_jumping = false
+		if not was_on_floor:
+			_tween_scale(Vector2(1.25, 1/1.25))
 	elif was_on_floor and not is_jumping:
 		coyote_timer.start()
 
@@ -55,6 +58,7 @@ func _process(delta):
 		jump_request_timer.stop()
 		coyote_timer.stop()
 		jump_sound.play()
+		_tween_scale(Vector2(1/1.25, 1.25))
 	
 	if is_jumping:
 		animation_player.play("jump")
@@ -67,6 +71,19 @@ func _process(delta):
 		sprite.flip_h = direction < 0
 
 
+func _tween_scale(target):
+	tween.interpolate_property(
+		sprite, "scale", null, target, 0.05,
+		Tween.TRANS_SINE, Tween.EASE_IN_OUT
+	)
+	tween.interpolate_property(
+		sprite, "scale", target, Vector2.ONE, 0.1,
+		Tween.TRANS_SINE, Tween.EASE_IN_OUT,
+		0.05
+	)
+	tween.start()
+
+
 func _on_Hurtbox_hurt(_hitbox):
 	velocity.y = -jump_force
 	animation_player.play("death")
@@ -75,6 +92,8 @@ func _on_Hurtbox_hurt(_hitbox):
 
 func _on_Hitbox_hit():
 	velocity.y = -jump_force / 2
+	if not is_on_floor():
+		_tween_scale(Vector2(1.25, 1/1.25))
 
 
 func _on_TrailTimer_timeout():
