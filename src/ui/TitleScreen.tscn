@@ -158,6 +158,7 @@ text = "返回"
 anims/show-options = SubResource( 2 )
 
 [node name="ClickSound" parent="." instance=ExtResource( 5 )]
+
 [connection signal="pressed" from="UI/Menus/MainMenu/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="UI/Menus/MainMenu/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="UI/Menus/MainMenu/QuitButton" to="." method="_on_QuitButton_pressed"]

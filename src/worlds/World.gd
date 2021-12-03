@@ -18,6 +18,9 @@ func _ready():
 	camera.limit_left = bounds.position.x
 	camera.limit_right = bounds.end.x
 	
+	camera.force_update_scroll()
+	camera.reset_smoothing()
+	
 	var shape = RectangleShape2D.new()
 	shape.extents = Vector2(bounds.size.x / 2, tilemap.cell_size.y / 2)
 	$Hitbox/CollisionShape2D.shape = shape
